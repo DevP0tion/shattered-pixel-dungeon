@@ -82,7 +82,8 @@ namespace DungeonGenerator
         {
             foreach (Room r in rooms)
             {
-                r.SetEmpty();
+                r.ClearConnections();
+                ((DungeonRect)r).SetEmpty();
             }
 
             entrance = exit = shop = null;

@@ -267,8 +267,10 @@ namespace DungeonGenerator
 
                 foreach (Room connected in room.connected.Keys)
                 {
-                    // Avoid drawing same connection twice
-                    var key = room.GetHashCode() < connected.GetHashCode()
+                    // Avoid drawing same connection twice by using consistent ordering
+                    // Use object reference identity for comparison
+                    var key = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(room) < 
+                              System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(connected)
                         ? (room, connected)
                         : (connected, room);
 

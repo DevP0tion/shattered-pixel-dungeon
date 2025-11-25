@@ -217,7 +217,9 @@ namespace DungeonGenerator.Examples
             {
                 foreach (Room connected in room.connected.Keys)
                 {
-                    var key = room.GetHashCode() < connected.GetHashCode()
+                    // Use object reference identity for comparison
+                    var key = System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(room) < 
+                              System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(connected)
                         ? (room, connected)
                         : (connected, room);
 
@@ -226,7 +228,7 @@ namespace DungeonGenerator.Examples
 
                     drawnConnections.Add(key);
 
-                    GameObject lineObj = new GameObject($"Connection_{room.GetHashCode()}_{connected.GetHashCode()}");
+                    GameObject lineObj = new GameObject($"Connection_{room.left}_{room.top}_to_{connected.left}_{connected.top}");
                     lineObj.transform.parent = parent;
 
                     LineRenderer line = lineObj.AddComponent<LineRenderer>();

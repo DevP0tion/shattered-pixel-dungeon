@@ -197,17 +197,6 @@ namespace DungeonGenerator
         public virtual int MinHeight() => _minHeight;
         public virtual int MaxHeight() => _maxHeight;
 
-        // Override Width/Height to include +1 for inclusive bounds
-        public override int Width()
-        {
-            return base.Width();
-        }
-
-        public override int Height()
-        {
-            return base.Height();
-        }
-
         /// <summary>
         /// Sets the room size using default constraints
         /// </summary>
